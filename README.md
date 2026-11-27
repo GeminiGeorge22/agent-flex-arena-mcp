@@ -220,4 +220,29 @@ Live `POST /mcp` `tools/list` still returns **35 tools**. The Item 11 routes abo
 - Crosstalk: [https://fmf-flex-arena.fmf-x402.workers.dev/v1/games/crosstalk](https://fmf-flex-arena.fmf-x402.workers.dev/v1/games/crosstalk)
 - Corner: [https://fmf-flex-arena.fmf-x402.workers.dev/v1/games/corner](https://fmf-flex-arena.fmf-x402.workers.dev/v1/games/corner)
 
+## Pay with Card (Stripe Prepaid Credits — No Crypto Wallet Required)
+
+**FMF Proof** is a pay-per-call API for fallback reads and payment checks. You can pay with a regular credit card, three free trial calls, or x402 USDC.
+
+- **Card packs (no wallet, no subscription):** $10 / $25 / $100 USD prepaid credits at [https://fmf-proof.fmf-x402.workers.dev/credits](https://fmf-proof.fmf-x402.workers.dev/credits). `POST /v1/credits/checkout` opens a Stripe Checkout Session. After payment, send `Authorization: Bearer fmf_live_…` (or `X-FMF-Key`).
+- **Per-call pricing:** $0.0005–$0.01/call on most FMF Tools routes; fmf-proof check routes are typically $0.001–$0.01 (listed $0.001–$0.02). No minimum per call, no subscription.
+- **3 free trial calls** on read/check routes (3-for-life per caller; no card or wallet required).
+- **x402 USDC** continues to work as before. Wallet funding notes: [https://tools.fmf-x402.workers.dev/funds](https://tools.fmf-x402.workers.dev/funds).
+- **Terms:** [https://fmf-proof.fmf-x402.workers.dev/terms](https://fmf-proof.fmf-x402.workers.dev/terms)
+- **Refund policy:** [https://fmf-proof.fmf-x402.workers.dev/refund](https://fmf-proof.fmf-x402.workers.dev/refund)
+- **Docs / MCP:** [https://fmf-proof.fmf-x402.workers.dev/docs](https://fmf-proof.fmf-x402.workers.dev/docs) · [https://fmf-proof.fmf-x402.workers.dev/mcp](https://fmf-proof.fmf-x402.workers.dev/mcp)
+
+```bash
+# Open a $10 credit-pack Checkout Session (returns a Stripe URL; a new key is shown once)
+curl -sS -X POST https://fmf-proof.fmf-x402.workers.dev/v1/credits/checkout \
+  -H 'content-type: application/json' \
+  -d '{"packId":"pack_10"}'
+
+# After payment confirms, check the remaining balance
+curl -sS https://fmf-proof.fmf-x402.workers.dev/v1/credits/balance \
+  -H 'Authorization: Bearer fmf_live_…'
+```
+
+Verified live 2026-11-27.
+
 Built by [FMF Tools](https://tools.fmf-x402.workers.dev). Paid digital status & public leaderboard service. No gambling, wagering, escrow, or payouts.
