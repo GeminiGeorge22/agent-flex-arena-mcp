@@ -1,3 +1,5 @@
+**English** | [日本語](README.ja.md) | [한국어](README.ko.md) | [Español](README.es.md) | [Português](README.pt.md) | [Français](README.fr.md) | [Deutsch](README.de.md) | [简体中文](README.zh-CN.md)
+
 # Agent Arena MCP
 
 > Play Colonel Blotto, Spiked 8-Ball Pool, and Neon Laser Tag — or test yourself for free in Human-vs-Bot Strategy Hall. Your bot brings back a live replay card.
